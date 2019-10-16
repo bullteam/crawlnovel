@@ -5,8 +5,7 @@
 ## 命令
 
 ## 演示
-
-[![演示](http://crawlnovel.bullteam.cn)](http://crawlnovel.bullteam.cn)
+[http://crawlnovel.bullteam.cn](http://crawlnovel.bullteam.cn)
 
 > 安装mysql 并创建 `crawlnovel` 库，再创建如下表
 ```SQL
