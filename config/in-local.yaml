@@ -1,0 +1,20 @@
+mode: debug
+mysql:
+  dsn: >-
+    ${CRAWLNOVEL_MYSQL_USERNAME}:${CRAWLNOVEL_MYSQL_PASSWORD}@tcp(${CRAWLNOVEL_MYSQL_HOST}:${CRAWLNOVEL_MYSQL_PORT})/${CRAWLNOVEL_MYSQL_DB}?charset=utf8&parseTime=True&loc=Local
+  pool:
+    min: 5
+    max: 20
+redis:
+  host: ${CRAWLNOVEL_REDIS_HOST}:${CRAWLNOVEL_REDIS_PORT}
+  auth: ${CRAWLNOVEL_REDIS_PASSWORD}
+  pool:
+    min: 3
+    max: 20
+mongo:
+  host: ${CRAWLNOVEL_MONGO_HOST}
+  port: ${CRAWLNOVEL_MONGO_PORT}
+  db: ${CRAWLNOVEL_MONGO_DB}
+  username: ${CRAWLNOVEL_MONGO_USERNAME}
+  password: ${CRAWLNOVEL_MONGO_PASSWORD}
+  authSource: ${CRAWLNOVEL_MONGO_AUTHSOURCE}
