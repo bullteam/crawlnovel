@@ -15,8 +15,7 @@ require (
 	github.com/chromedp/chromedp v0.4.0
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/gin-contrib/cors v1.3.0
-	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.4.0
+	github.com/gin-gonic/gin v1.7.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/go-redis/redis v6.15.3+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
@@ -26,7 +25,6 @@ require (
 	github.com/gocolly/redisstorage v0.0.0-20180819125329-cc8d514304a2
 	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/jinzhu/gorm v1.9.10
-	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
@@ -43,13 +41,11 @@ require (
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/viper v1.4.0
-	github.com/stretchr/testify v1.3.0
+	github.com/stretchr/testify v1.4.0
 	github.com/temoto/robotstxt v1.1.1 // indirect
-	github.com/ugorji/go v1.1.7 // indirect
-	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4 // indirect
 	golang.org/x/net v0.0.0-20190724013045-ca1201d0de80 // indirect
 	golang.org/x/text v0.3.2
 	gopkg.in/cheggaaa/pb.v1 v1.0.28
 	gopkg.in/go-playground/validator.v8 v8.18.2
-	gopkg.in/yaml.v2 v2.2.2
+	gopkg.in/yaml.v2 v2.2.8
 )
