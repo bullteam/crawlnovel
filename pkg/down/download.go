@@ -16,9 +16,9 @@ import (
 
 var threadsNum = 10
 
-func Download(bookurl string, driver string) error {
+func Download(bookUrl string, driver string) error {
 	var filename = ""
-	if err := InitLoadStore(driver, bookurl); err != nil {
+	if err := InitLoadStore(driver, bookUrl); err != nil {
 		return err
 	}
 	//var err error
@@ -147,7 +147,7 @@ func replaceChapterString(chapter *store.Store) (chapters *store.Store) {
 					continue
 				}
 				v = strings.Replace(v, "“”", "", -1)
-				if regexp.MustCompile("^[…]+$").MatchString(v) {
+				if regexp.MustCompile("^...+$").MatchString(v) {
 					continue
 				}
 				newContent = append(newContent, v)
