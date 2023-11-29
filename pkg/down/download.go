@@ -19,6 +19,7 @@ var threadsNum = 10
 func Download(bookUrl string, driver string) error {
 	var filename = ""
 	if err := InitLoadStore(driver, bookUrl); err != nil {
+		println(err.Error())
 		return err
 	}
 	//var err error

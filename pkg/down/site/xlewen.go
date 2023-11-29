@@ -4,45 +4,46 @@ import (
 	"crawlnovel/pkg/down/store"
 	"fmt"
 	"github.com/antchfx/htmlquery"
-	"golang.org/x/text/encoding/simplifiedchinese"
-	"golang.org/x/text/transform"
 	"io"
 	"net/url"
 	"strings"
 )
 
-var biquge1 = SiteA{
-	Name:     "笔趣阁",
-	HomePage: "https://www.biquge5200.cc/",
+var xlewen = SiteA{
+	Name:     "乐文小说",
+	HomePage: "https://www.xlewen3.com/",
 	Match: []string{
-		`https://www\.biquge5200\.cc/\d+_\d+/*`,
-		`http://www\.biquge5200\.cc/\d+_\d+/\d+\.html/*`,
+		`https://www\.xlewen3\.com/\d+/\d+/*`,
+		`https://www\.xlewen3\.com/\d+/\d+/\d+\.html/*`,
 	},
 	BookInfo: func(body io.Reader) (s *store.Store, err error) {
-		body = transform.NewReader(body, simplifiedchinese.GBK.NewDecoder())
+		//body = transform.NewReader(body, simplifiedchinese.GBK.NewDecoder())
 		doc, err := htmlquery.Parse(body)
 		if err != nil {
 			return
 		}
 		s = &store.Store{}
 		nodeTitle := htmlquery.Find(doc, `//*[@id="info"]/h1`)
+
 		if len(nodeTitle) == 0 {
 			err = fmt.Errorf("no matching title")
 			return
 		}
 		s.BookName = htmlquery.InnerText(nodeTitle[0])
 
-		nodeDesc := htmlquery.Find(doc, `//*[@id="intro"]/p`)
+		nodeDesc := htmlquery.Find(doc, `//*[@id="intro"]`)
 		if len(nodeDesc) == 0 {
 			err = fmt.Errorf("no matching desc")
 			return
 		}
+
 		s.Description = strings.Replace(
 			htmlquery.OutputHTML(nodeDesc[0], false),
 			"<br/>", "\n",
 			-1)
 		var author = htmlquery.Find(doc, `//*[@id="info"]/p[1]`)
 		s.Author = strings.TrimLeft(htmlquery.OutputHTML(author[0], false), "作\u00a0\u00a0\u00a0\u00a0者：")
+
 		nodeContent := htmlquery.Find(doc, `//*[@id="list"]/dl/dd/a`)
 		if len(nodeDesc) == 0 {
 			err = fmt.Errorf("no matching contents")
@@ -69,14 +70,14 @@ var biquge1 = SiteA{
 		return
 	},
 	Chapter: func(body io.Reader) ([]string, error) {
-		body = transform.NewReader(body, simplifiedchinese.GBK.NewDecoder())
+		//body = transform.NewReader(body, simplifiedchinese.GBK.NewDecoder())
 		doc, err := htmlquery.Parse(body)
 		if err != nil {
 			return nil, err
 		}
 
 		var M []string
-		nodeContent := htmlquery.Find(doc, `//div[@id="content"]/p`)
+		nodeContent := htmlquery.Find(doc, `//*[@id="content"]/text()`)
 		if len(nodeContent) == 0 {
 			err = fmt.Errorf("no matching content")
 			return nil, err

@@ -26,11 +26,14 @@ func (e ErrMethodMissing) Error() string {
 }
 
 var Sitepool = []SiteA{
-	wwww81newcom,
-	dingdian,
-	biquge1,
-	biquge3,
-	ffxs,
+	//wwww81newcom,
+	//dingdian,
+	//biquge1,
+	//biquge3,
+	xlewen,
+	bigq,
+	//dfu7,
+	//ffxs,
 }
 
 type SiteA struct {
@@ -64,7 +67,7 @@ func MatchOne(pool []SiteA, u string) (*SiteA, error) {
 
 // MatchSites match all site
 func MatchSites(pool []SiteA, u string) ([]SiteA, error) {
-	var result = []SiteA{}
+	var result []SiteA
 	for _, v := range pool {
 		ok, err := v.match(u)
 		if err != nil {
@@ -111,7 +114,7 @@ func BookInfo(BookURL string) (s *store.Store, err error) {
 	}
 	req.Header.Add(
 		"user-agent",
-		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36",
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
 	)
 	resp, err := client.Do(req)
 	if err != nil {
@@ -126,7 +129,6 @@ func BookInfo(BookURL string) (s *store.Store, err error) {
 	if ms.BookInfo == nil {
 		return nil, ErrMethodMissing{ms}
 	}
-
 	chapter, err := ms.BookInfo(resp.Body)
 	chapter.BookURL = BookURL
 
@@ -166,7 +168,7 @@ func Chapter(BookURL string) (content []string, err error) {
 	}
 	req.Header.Add(
 		"user-agent",
-		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36",
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
 	)
 	resp, err := client.Do(req)
 	if err != nil {
@@ -202,7 +204,7 @@ func RequestGet(u string) (resp *http.Response, err error) {
 	}
 	req.Header.Add(
 		"user-agent",
-		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36",
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
 	)
 	resp, err = client.Do(req)
 	if err != nil {

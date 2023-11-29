@@ -45,7 +45,7 @@ func InitLoadStore(driver string, bookurl string) error {
 		chapter, err = site.ChromedpBookInfo(bookURL.String(), "chromedp-log")
 	default:
 		log.Printf("使用http方式下载")
-		for errCount := 0; errCount < 20; errCount++ { //重试20次
+		for errCount := 0; errCount < 10; errCount++ { //重试20次
 			chapter, err = site.BookInfo(bookURL.String())
 			if err == nil {
 				break

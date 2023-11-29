@@ -14,11 +14,11 @@ import (
 
 var biquge3 = SiteA{
 	Name:     "笔趣阁",
-	HomePage: "https://www.biqiuge8.com/",
+	HomePage: "https://www.biqivge.com/",
 	Match: []string{
-		`https://www\.biqiuge8\.com/book/\d+/*`,
-		`https*://www\.biqiuge8\.com/book/goto/id/\d+/*`,
-		`https://www\.biqiuge8\.com/book/\d+/\d+\.html/*`,
+		`https://www\.biqivge\.com/book/\d+/*`,
+		`https*://www\.biqivge\.com/book/goto/id/\d+/*`,
+		`https://www\.biqivge\.com/book/\d+/\d+\.html/*`,
 	},
 	BookInfo: func(body io.Reader) (s *store2.Store, err error) {
 		body = transform.NewReader(body, simplifiedchinese.GBK.NewDecoder())
@@ -73,7 +73,7 @@ var biquge3 = SiteA{
 		//list
 		nodeContent := htmlquery.Find(doc, `//*[@id="content"]/text()`)
 		if len(nodeContent) == 0 {
-			err = fmt.Errorf("No matching content")
+			err = fmt.Errorf("no matching content")
 			return nil, err
 		}
 		for _, v := range nodeContent {

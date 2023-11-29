@@ -28,25 +28,25 @@ var dingdian = SiteA{
 
 		s = &store2.Store{}
 
-		node_title := htmlquery.FindOne(doc, `//div[@id="info"]/h1`)
-		s.BookName = htmlquery.InnerText(node_title)
+		nodeTitle := htmlquery.FindOne(doc, `//div[@id="info"]/h1`)
+		s.BookName = htmlquery.InnerText(nodeTitle)
 
-		node_desc := htmlquery.Find(doc, `//*[@id="intro"]/p`)
-		if len(node_desc) == 0 {
-			err = fmt.Errorf("No matching desc")
+		nodeDesc := htmlquery.Find(doc, `//*[@id="intro"]/p`)
+		if len(nodeDesc) == 0 {
+			err = fmt.Errorf("no matching desc")
 			return
 		}
 		s.Description = strings.Replace(
-			htmlquery.OutputHTML(node_desc[0], false),
+			htmlquery.OutputHTML(nodeDesc[0], false),
 			"<br/>", "\n",
 			-1)
 
 		var author = htmlquery.Find(doc, `//*[@id="info"]/p[1]`)
 		s.Author = strings.TrimLeft(htmlquery.OutputHTML(author[0], false), "作\u00a0\u00a0\u00a0\u00a0者：")
 
-		node_content := htmlquery.Find(doc, `//*[@id="list"]/dl/dd/a`)
-		if len(node_desc) == 0 {
-			err = fmt.Errorf("No matching contents")
+		nodeContent := htmlquery.Find(doc, `//*[@id="list"]/dl/dd/a`)
+		if len(nodeDesc) == 0 {
+			err = fmt.Errorf("no matching contents")
 			return
 		}
 
@@ -55,7 +55,7 @@ var dingdian = SiteA{
 			Chapters: make([]store2.Chapter, 0),
 		}
 
-		for _, v := range node_content[9:] {
+		for _, v := range nodeContent[9:] {
 			//fmt.Printf("href: %v\n", chapter_u)
 			chapterURL, err := url.Parse(htmlquery.SelectAttr(v, "href"))
 			if err != nil {
@@ -78,7 +78,7 @@ var dingdian = SiteA{
 			return nil, err
 		}
 
-		M := []string{}
+		var M []string
 		//list
 		nodeContent := htmlquery.Find(doc, `//*[@id="content"]/p`)
 		nodeContent = append(nodeContent, htmlquery.Find(doc, `//*[@id="content"]/text()`)...)

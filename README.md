@@ -5,18 +5,6 @@
 # 编译 (需要golang 1.11+ 环境)
 go build -o crawlnovel
 
-# 执行task
-
-./crawlnovel task -c ./config/in-local.yaml --type 1
-
-# 运行web
-
-./crawlnovel server -c ./config/in-local.yaml -p 8081
-# 单独执行爬虫
-
-
-go build -o crawlnovel && ./crawlnovel task -c ./config/in-local.yaml --type 3
-```
 
 ## 支持小说下载
 1.下载小说 -d 支持none,chromedp,phantomjs 三种方式
@@ -28,11 +16,6 @@ go build -o crawlnovel && ./crawlnovel task -c ./config/in-local.yaml --type 3
 ```
 ./crawlnovel convert -n 超品相师.crawnovel -f txt
 
-```
-3.搜索小说
-
-```
-./crawlnovel search -k 超品相师
 ```
 
 ## 特别鸣谢
